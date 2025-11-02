@@ -91,6 +91,8 @@ AUTH_GITHUB_ID=your_github_oauth_client_id
 AUTH_GITHUB_SECRET=your_github_oauth_client_secret
 # A secret used to encrypt JWT tokens for authentication.
 AUTH_SECRET=your_auth_secret_here
+# The base URL for the application.
+AUTH_URL=http://localhost:3000
 ```
 
 Open http://localhost:3000 and explore the application.
