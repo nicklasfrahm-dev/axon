@@ -93,6 +93,8 @@ AUTH_GITHUB_SECRET=your_github_oauth_client_secret
 AUTH_SECRET=your_auth_secret_here
 # The base URL for the application.
 AUTH_URL=http://localhost:3000
+# The environment the application is running in.
+NODE_ENV=development
 ```
 
 Open http://localhost:3000 and explore the application.
