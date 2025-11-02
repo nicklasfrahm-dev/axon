@@ -34,12 +34,12 @@ The `service` configuration is stored in directories following the layout below:
 
 ```
 deploy/services/<release>/
-	├── 00-base.yaml
-	├── 10-env-dev.yaml
-	├── 10-env-stg.yaml
-	├── 10-env-prd.yaml
+  ├── 00-base.yaml
+  ├── 10-env-dev.yaml
+  ├── 10-env-stg.yaml
+  ├── 10-env-prd.yaml
   ├── 20-cluster-prd-cph02.yaml
-	└── 30-tenant-customer.yaml
+  └── 30-tenant-customer.yaml
 ```
 
 ### Client interface
