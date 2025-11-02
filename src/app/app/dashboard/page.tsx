@@ -1,15 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
 import { Container, Rocket, Server, SquareDashed } from "lucide-react";
-import Link from "next/link";
-
-interface Service {
-  release: string;
-  repository?: string;
-  chart?: string;
-  tag?: string;
-}
+import { useState } from "react";
 
 export default function Dashboard() {
   const [query, setQuery] = useState("");
@@ -58,7 +50,10 @@ export default function Dashboard() {
               placeholder="Search infrastructure"
               className="grow input rounded px-4 py-4 text-lg"
             />
-            <button className="ml-4 button-primary flex flex-row items-center">
+            <button
+              type="button"
+              className="ml-4 button-primary flex flex-row items-center"
+            >
               <Rocket />
               <span className="ml-2 flex flex-row items-center">
                 Deploy Service
