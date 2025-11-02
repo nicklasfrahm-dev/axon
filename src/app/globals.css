@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/*
+Definition of the design system. All colors, gradients, fonts,
+etc. should be defined here. All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 26% 8%;
+    --foreground: 210 40% 98%;
+
+    --red: 0 84% 60%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 20% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 199 89% 60%;
+
+    --secondary: 220 15% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 188 94% 45%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.75rem;
+
+    --code-bg: 220 18% 10%;
+    --code-border: 220 15% 22%;
+  }
+}
+
+@layer base {
+  /* Keep the current font declarations from the previous file. This preserves the project's chosen fonts. */
+  :root {
+    --font-sans: var(--font-roboto);
+    --font-mono: var(--font-roboto-mono);
+  }
+
+  body {
+    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))] font-sans antialiased;
+  }
+
+  code,
+  pre {
+    @apply font-mono;
+  }
+}
+
+@layer components {
+  .gradient-glow {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)),
+      hsl(var(--accent))
+    );
+  }
+
+  .code-block {
+    @apply bg-[hsl(var(--code-bg))] border border-[hsl(var(--code-border))] rounded-lg;
+  }
+
+  /* Backdrop overlay using a semi-transparent version of foreground */
+  .backdrop-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .card {
+    background-color: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .input {
+    background-color: hsl(var(--code-bg));
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 0.5rem 1rem;
+    outline: 1px solid (hsl(var(--foreground)));
+  }
+
+  .button-primary {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-radius: var(--radius);
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .button-primary:hover {
+    background-color: hsl(var(--primary-glow));
+  }
+
+  .button-destructive {
+    background-color: hsl(var(--destructive));
+    color: hsl(var(--destructive-foreground));
+    border-radius: var(--radius);
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .button-destructive:hover {
+    background-color: hsl(var(--red));
+  }
+}
