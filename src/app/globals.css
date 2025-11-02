@@ -94,7 +94,7 @@ etc. should be defined here. All colors MUST be HSL.
     border: 1px solid hsl(var(--border));
     border-radius: var(--radius);
     padding: 0.5rem 1rem;
-    outline: 1px solid (hsl(var(--foreground)));
+    outline: none;
   }
 
   .button-primary {

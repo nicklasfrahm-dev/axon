@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import { Roboto, Roboto_Mono } from "next/font/google";
-import { BrainCircuit } from "lucide-react";
 import Avatar from "@axon/app/components/Avatar";
 import { auth } from "@axon/auth";
+import { BrainCircuit } from "lucide-react";
+import type { Metadata } from "next";
+import { Roboto, Roboto_Mono } from "next/font/google";
 import "@axon/app/globals.css";
 
 const roboto = Roboto({

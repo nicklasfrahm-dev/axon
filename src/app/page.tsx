@@ -22,7 +22,11 @@ export default function Home() {
             <span>{session?.error || "An unknown error occurred."}</span>
           </p>
         </Activity> */}
-        <button className="button-primary" onClick={() => signIn("github")}>
+        <button
+          className="button-primary"
+          type="button"
+          onClick={() => signIn("github")}
+        >
           Login with GitHub
         </button>
       </div>
