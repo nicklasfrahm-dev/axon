@@ -24,8 +24,6 @@ deploy/clusters/<cluster>/<tenant>/<release>.yaml
 Each `<release>.yaml` references an OCI chart and a tag, for example:
 
 ```yaml
-repository: oci://ghcr.io/nicklasfrahm/charts
-release: sample
 chart: sample-chart
 tag: 0.3.0
 ```
