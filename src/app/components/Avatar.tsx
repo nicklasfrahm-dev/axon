@@ -33,7 +33,7 @@ export default function Avatar({ user }: { user?: User | null }) {
     <Activity mode={user ? "visible" : "hidden"}>
       <div ref={rootRef}>
         <button
-          className="flex items-center hover:bg-[hsl(var(--popover))] rounded-lg transition-colors p-2 cursor-pointer"
+          className="flex items-center hover:bg-[hsl(var(--popover))] rounded transition-colors p-2 cursor-pointer"
           type="button"
           onClick={() => setOpen(!open)}
         >
