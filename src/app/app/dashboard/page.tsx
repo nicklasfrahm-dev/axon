@@ -23,7 +23,8 @@ export default function Dashboard() {
   useEffect(() => {
     (async () => {
       const gitClient = new GitClient(
-        process.env.NEXT_PUBLIC_GIT_REPO || "INVALID",
+        process.env.NEXT_PUBLIC_GIT_REPO ||
+          "https://github.com/nicklasfrahm-dev/platform",
       );
 
       await gitClient.refresh();
