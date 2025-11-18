@@ -6,10 +6,16 @@ interface AxonClient {
   listClusters(): Promise<Cluster[]>;
   // Service management.
   listServices(): Promise<Service[]>;
+  // Tenant management.
+  listTenants(): Promise<Tenant[]>;
 }
 
 class Cluster {
-  constructor(private name: string) {}
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
 
   environment(): string {
     const chunks = this.name.split("-");
@@ -44,5 +50,15 @@ class Service {
   }
 }
 
+class Tenant {
+  id: string;
+  name: string;
+
+  constructor(id: string, name: string) {
+    this.id = id;
+    this.name = name;
+  }
+}
+
 export type { AxonClient };
-export { Cluster, Service };
+export { Cluster, Service, Tenant };
