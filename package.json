@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "build:container": "docker build -f Containerfile -t axon .",
+    "start:container": "docker run --rm -p 3000:3000 --env-file .env -v /tmp/next-cache:/app/.next/standalone/.next/cache axon"
   },
   "dependencies": {
     "@fontsource/roboto": "5.2.8",
