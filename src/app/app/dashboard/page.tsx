@@ -47,8 +47,6 @@ export default function Dashboard() {
       const services = await gitClient.listServices();
       const tenants = await gitClient.listTenants();
 
-      console.log(tenants);
-
       setInfraInfo({
         clusters,
         services,
