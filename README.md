@@ -93,6 +93,8 @@ AUTH_SECRET=your_auth_secret_here
 AUTH_URL=http://localhost:3000
 # The environment the application is running in.
 NODE_ENV=development
+# The Git repository containing the configuration.
+NEXT_PUBLIC_GIT_REPO=https://github.com/nicklasfrahm-dev/platform
 ```
 
 Open http://localhost:3000 and explore the application.

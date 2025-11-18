@@ -21,6 +21,9 @@ function uniqueTenantNames(tenants: Tenant[]): string[] {
   return Array.from(namesSet);
 }
 
+// TODO: Move this to context and provide this via SSR.
+const env = process.env;
+
 export default function Dashboard() {
   const [query, setQuery] = useState("");
   const [infraInfo, setInfraInfo] = useState<InfraInfo>({
@@ -34,7 +37,7 @@ export default function Dashboard() {
   useEffect(() => {
     (async () => {
       const gitClient = new GitClient(
-        process.env.NEXT_PUBLIC_GIT_REPO ||
+        env.NEXT_PUBLIC_GIT_REPO ||
           "https://github.com/nicklasfrahm-dev/platform",
       );
 
@@ -43,8 +46,6 @@ export default function Dashboard() {
       const clusters = await gitClient.listClusters();
       const services = await gitClient.listServices();
       const tenants = await gitClient.listTenants();
-
-      console.log(tenants);
 
       setInfraInfo({
         clusters,
