@@ -1,6 +1,6 @@
 "use client";
 
-import type { Cluster, Service } from "@axon/app/lib/axon";
+import type { Cluster, Service, Tenant } from "@axon/app/lib/axon";
 import GitClient from "@axon/app/lib/axon/git";
 import { Boxes, Container, Package, Rocket, SquareDashed } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -8,16 +8,27 @@ import { useEffect, useState } from "react";
 type InfraInfo = {
   clusters: Cluster[];
   services: Service[];
+  tenants: string[];
 };
+
+function uniqueTenantNames(tenants: Tenant[]): string[] {
+  const namesSet = new Set<string>();
+
+  tenants.forEach((tenant) => {
+    namesSet.add(tenant.name);
+  });
+
+  return Array.from(namesSet);
+}
 
 export default function Dashboard() {
   const [query, setQuery] = useState("");
   const [infraInfo, setInfraInfo] = useState<InfraInfo>({
     clusters: [],
     services: [],
+    tenants: [],
   });
 
-  const tenants = [];
   const instances = [];
 
   useEffect(() => {
@@ -31,8 +42,15 @@ export default function Dashboard() {
 
       const clusters = await gitClient.listClusters();
       const services = await gitClient.listServices();
+      const tenants = await gitClient.listTenants();
 
-      setInfraInfo({ clusters, services });
+      console.log(tenants);
+
+      setInfraInfo({
+        clusters,
+        services,
+        tenants: uniqueTenantNames(tenants),
+      });
     })();
   }, []);
 
@@ -54,7 +72,7 @@ export default function Dashboard() {
     },
     {
       title: "Tenants",
-      count: tenants.length,
+      count: infraInfo.tenants.length,
       icon: <SquareDashed />,
     },
   ];
@@ -97,7 +115,9 @@ export default function Dashboard() {
         </div>
         <div id="services-list" className="grid gap-4">
           {infraInfo.services
-            .filter((service) => service.name.toLowerCase().includes(query))
+            .filter((service) =>
+              service.name.toLowerCase().includes(query.toLowerCase()),
+            )
             .map((service) => (
               <div key={service.name} className="card p-4 shadow-sm">
                 <div className="text-xl font-bold flex items-center gap-2">

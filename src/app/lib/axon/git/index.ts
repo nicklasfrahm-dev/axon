@@ -1,5 +1,5 @@
 import type { AxonClient } from "@axon/app/lib/axon";
-import { Cluster, Service } from "@axon/app/lib/axon";
+import { Cluster, Service, Tenant } from "@axon/app/lib/axon";
 import LightningFS from "@isomorphic-git/lightning-fs";
 import git from "isomorphic-git";
 import http from "isomorphic-git/http/web";
@@ -74,6 +74,34 @@ class GitClient implements AxonClient {
     ).then((services) =>
       services.filter((service: Service | null) => service !== null),
     );
+  }
+
+  async listTenants(): Promise<Tenant[]> {
+    const clusters = await this.listClusters();
+
+    const clusterTenants = await Promise.all(
+      clusters.map(async (cluster) => {
+        const entries = await this.fs.readdir(
+          `/deploy/clusters/${cluster.name}`,
+        );
+        return Promise.all(
+          entries.map(async (entry) => {
+            const stat = await this.fs.stat(
+              `/deploy/clusters/${cluster.name}/${entry}`,
+            );
+            if (stat.isDirectory()) {
+              return new Tenant(`${cluster.name}/${entry}`, entry);
+            }
+
+            return null;
+          }),
+        ).then((tenants) =>
+          tenants.filter((tenant: Tenant | null) => tenant !== null),
+        );
+      }),
+    );
+
+    return clusterTenants.flat(1);
   }
 }
 
